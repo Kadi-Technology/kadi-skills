@@ -53,6 +53,12 @@ Skills para operar las redes de KADI: copys por plataforma, linter de claims, en
 | [`kadi-voice`](skills/voz/kadi-voice) | Skills de Antigravity | Protocolo de voz sin encimamiento: `chrono speak --blocking`, Salomé para reportes y Opus para alertas. |
 | [`chrono-tts`](skills/voz/chrono-tts) | Skills de Antigravity | Narración asíncrona con ChronoSDK desde CLI o Python. |
 
+### Multijugador (`skills/multijugador/`)
+
+| Skill | Origen | Para qué sirve |
+|---|---|---|
+| [`kadi-lan-multiplayer`](skills/multijugador/kadi-lan-multiplayer) | Servidor multijugador de un juego de KADI (patrón generalizado, código nuevo) | Multijugador local 1v1 y "buscar rival" para quienes comparten WiFi. Ruta A (recomendada): servidor de señalización que agrupa por IP pública, cola 1v1, invitaciones, salas con código, WebRTC DataChannel P2P sin TURN y relevo por WebSocket si falla. Ruta B: host Node offline con mDNS/DNS-SD, broadcast UDP y QR. Autoridad del anfitrión o lockstep, reconexión, revancha, límites de tasa y tamaño, y plantillas con 50 pruebas `node --test` (incluye `references/`, `templates/` y `tests/`). |
+
 ### Plugins
 
 Estas skills no traen plugins propios, así que el repo no incluye ninguno.
@@ -73,7 +79,7 @@ git clone https://github.com/Kadi-Technology/kadi-skills.git
 cp -r kadi-skills/skills/kadi-ultra-eco ~/.claude/skills/
 ```
 
-Las skills de `skills/redes-sociales/` y `skills/voz/` se copian igual: copia la carpeta de la skill (por ejemplo `skills/voz/kadi-voice`) a `~/.claude/skills/`, sin las carpetas intermedias. Para una sola repo, copia a `<repo>/.claude/skills/` en lugar de `~/.claude/skills/`. La skill queda disponible en la siguiente sesión de Claude Code. Las que tienen `disable-model-invocation` (como `kadi-ultra-eco`) solo se activan al invocarlas por su comando.
+Las skills de `skills/redes-sociales/`, `skills/voz/` y `skills/multijugador/` se copian igual: copia la carpeta de la skill (por ejemplo `skills/voz/kadi-voice`) a `~/.claude/skills/`, sin las carpetas intermedias. Para una sola repo, copia a `<repo>/.claude/skills/` en lugar de `~/.claude/skills/`. La skill queda disponible en la siguiente sesión de Claude Code. Las que tienen `disable-model-invocation` (como `kadi-ultra-eco`) solo se activan al invocarlas por su comando.
 
 ## Notas de uso
 
@@ -83,6 +89,7 @@ Las skills de `skills/redes-sociales/` y `skills/voz/` se copian igual: copia la
 - Los marcadores `<IP_PRODUCCION>` y similares son valores que debes poner tú.
 - Las skills de redes sociales y de voz no necesitan tokens, API keys ni cookies. Los datos de contacto, cuentas y clientes del original se reemplazaron por marcadores que cada skill documenta en su `README.md` o `SKILL.md`: `<CORREO_CONTACTO>`, `<CORREO_VENTAS>`, `<TELEFONO_WHATSAPP>`, `<WHATSAPP_E164>`, `<ID_AGENDA>`, `<NOMBRE_COFUNDADOR_1>`, `<NOMBRE_COFUNDADOR_2>`, `<PERFIL_LINKEDIN>`, `<NOMBRE_FUNDADOR>`, `<RUTA_CHROMIUM_PLAYWRIGHT>`, `<URL_PRODUCCION_CLIENTE>` y `<URL_ACADEMIA_PUBLICA>`. Los hosts `portal-cliente`, `prod-cliente`, `academia-privada`, `demo-privada` y `demo-retirada` bajo `kadi.technology`, y las IPs `203.0.113.50` y `203.0.113.51`, son ficticios.
 - Variables de entorno opcionales: `KADI_CHROME_EXEC`, `KADI_WEBPAGE_DIR`, `KADI_SCREENSHOTS_DIR` y `KADI_VIDEOS_SOURCE`.
+- `kadi-lan-multiplayer` necesita Node 20 o superior y una sola dependencia, `ws` (`cd templates && npm install && npm test`). El servidor de señalización no guarda ni registra IPs; quien lo despliegue debe configurar `TRUST_PROXY`, `ORIGIN_SECRET` y `ALLOWED_ORIGINS` por variables de entorno (la skill no incluye secretos). Las IPs `203.0.113.x`, `198.51.100.x`, `192.0.2.x` y `192.168.1.x` de sus pruebas y ejemplos son de documentación o ficticias, y `senal.tu-dominio.example` es un marcador.
 - Las skills de voz usan `chrono` (ChronoSDK) y `edge-tts`, que no se incluyen. `edge-tts` envía el texto a un servicio de síntesis en línea de Microsoft.
 
 ## Variantes de Antigravity

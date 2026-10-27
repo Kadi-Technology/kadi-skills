@@ -1,0 +1,16 @@
+{
+  "name": "kadi-lan-multiplayer-template",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Plantillas de multijugador LAN 1v1 (ruta A: senalizacion por IP publica + WebRTC; ruta B: host LAN con mDNS/UDP).",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node signaling-server.mjs",
+    "start:host": "node lan-host-mdns.mjs",
+    "test": "node --test ../tests/signaling.test.mjs ../tests/client.test.mjs ../tests/game-session.test.mjs ../tests/lan-host.test.mjs"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
