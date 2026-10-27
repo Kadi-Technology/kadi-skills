@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Node
+node_modules/
+
+# Secretos y entorno local
+.env
+.env.*
+*.pem
+*.key
+
+# Estado de ejecucion de las skills (locks, ledgers, caches, logs)
+.swarm/
+state/
+*.log
+*.lock
+ledger*.jsonl
+
+# SO / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
