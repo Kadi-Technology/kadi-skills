@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KADI v1.7 — Promo Video Presentation (HTML5 Motion Engine)</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --text-main: #f8fafc;
+            --card-bg: rgba(30, 41, 59, 0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1080px;
+            aspect-ratio: 16 / 9;
+            background-color: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 30px rgba(56, 189, 248, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .slide-layer {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-layer.active {
+            opacity: 1;
+        }
+
+        .slide-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1);
+            transition: transform 6s ease-out;
+        }
+
+        .slide-layer.active .slide-img {
+            transform: scale(1.08);
+        }
+
+        .overlay-card {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            right: 40px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 24px 32px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+        }
+
+        .slide-layer.active .overlay-card {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .overlay-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            color: #fff;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .overlay-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .overlay-desc {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            line-height: 1.4;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 20px;
+            background: rgba(30, 41, 59, 0.8);
+            padding: 12px 24px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+
+        .progress-bar-container {
+            width: 300px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+            transition: width 0.1s linear;
+        }
+
+        .slide-counter {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>KADI v1.7 — Commercial Video Showcase</h1>
+        <p>Generado con el Motor Audiovisual de Claude (HTML5 Canvas Motion Engine)</p>
+    </div>
+
+    <div class="video-container" id="videoContainer">
+        <!-- Slide 1: Dashboard -->
+        <div class="slide-layer active" data-duration="5000">
+            <img src="./assets/screenshots/01_dashboard.png" class="slide-img" alt="Dashboard">
+            <div class="overlay-card">
+                <span class="overlay-badge">Centro Operativo Inteligente</span>
+                <div class="overlay-title">Monitor Kanban & KPIs Financieros en Tiempo Real</div>
+                <div class="overlay-desc">Controla las consultas del día, pacientes activos e ingresos de la clínica con una interfaz clínica optimizada de 60 FPS.</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Directorio -->
+        <div class="slide-layer" data-duration="5000">
+            <img src="./assets/screenshots/02_directorio.png" class="slide-img" alt="Directorio">
+            <div class="overlay-card">
+                <span class="overlay-badge">Expediente Clínico Digital</span>
+                <div class="overlay-title">Directorio Unificado de Pacientes y Clientes</div>
+                <div class="overlay-desc">Historial médico omnisciente, resguardo de datos clínicos y trazabilidad garantizada bajo PostgreSQL 17.</div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Agenda -->
+        <div class="slide-layer" data-duration="5000">
+            <img src="./assets/screenshots/03_agenda.png" class="slide-img" alt="Agenda">
+            <div class="overlay-card">
+                <span class="overlay-badge">Gestión de Citas</span>
+                <div class="overlay-title">Agenda Médica Inteligente & Recordatorios</div>
+                <div class="overlay-desc">Optimiza los horarios de atención, evita empalmes de consultas y automatiza la programación de citas quirúrgicas.</div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Inventario -->
+        <div class="slide-layer" data-duration="5000">
+            <img src="./assets/screenshots/04_inventario.png" class="slide-img" alt="Inventario">
+            <div class="overlay-card">
+                <span class="overlay-badge">Control de Stock & Vademécum</span>
+                <div class="overlay-title">Gestión de Productos, Lotes y Caducidades</div>
+                <div class="overlay-desc">Monitoreo de inventario en tiempo real con alertas automáticas de reabastecimiento y catálogo de precios.</div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Caja -->
+        <div class="slide-layer" data-duration="5000">
+            <img src="./assets/screenshots/05_caja.png" class="slide-img" alt="Caja">
+            <div class="overlay-card">
+                <span class="overlay-badge">Finanzas Auditadas</span>
+                <div class="overlay-title">Caja Registradora & Flujo de Efectivo Antiderrames</div>
+                <div class="overlay-desc">Cortes de caja automáticos, auditoría atómica y control estricto de ingresos diarios sin discrepancias.</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: UCI -->
+        <div class="slide-layer" data-duration="5000">
+            <img src="./assets/screenshots/06_uci.png" class="slide-img" alt="UCI">
+            <div class="overlay-card">
+                <span class="overlay-badge">Hospitalización Avanzada</span>
+                <div class="overlay-title">Módulo UCI & Pacientes en Cuidados Intensivos</div>
+                <div class="overlay-desc">Monitoreo de signos vitales, aplicación de medicamentos programados y firmas digitales de tratamiento.</div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Vacunas -->
+        <div class="slide-layer" data-duration="5000">
+            <img src="./assets/screenshots/07_vacunas.png" class="slide-img" alt="Vacunas">
+            <div class="overlay-card">
+                <span class="overlay-badge">Salud Preventiva</span>
+                <div class="overlay-title">Libreta de Vacunación & Esquemas de Refuerzo</div>
+                <div class="overlay-desc">Trazabilidad de biológicos, lotes de laboratorio y programación automática de refuerzos anuales.</div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Reportes -->
+        <div class="slide-layer" data-duration="5000">
+            <img src="./assets/screenshots/09_reportes.png" class="slide-img" alt="Reportes">
+            <div class="overlay-card">
+                <span class="overlay-badge">Business Intelligence</span>
+                <div class="overlay-title">Analítica Empresarial & Reportes Gerenciales</div>
+                <div class="overlay-desc">Toma decisiones estratégicas basadas en datos reales de facturación, volumen de consultas y rendimiento.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" id="playBtn">▶ Reproducir Demo</button>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="slide-counter" id="slideCounter">1 / 8</div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide-layer');
+        const playBtn = document.getElementById('playBtn');
+        const progressBar = document.getElementById('progressBar');
+        const slideCounter = document.getElementById('slideCounter');
+        
+        let currentSlide = 0;
+        let isPlaying = false;
+        let slideTimer = null;
+        let progressInterval = null;
+        const slideDuration = 5000;
+        let startTime = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+            slideCounter.textContent = `${index + 1} / ${slides.length}`;
+            speakNarrative(index);
+        }
+
+        function speakNarrative(index) {
+            if ('speechSynthesis' in window && isPlaying) {
+                window.speechSynthesis.cancel();
+                const titles = [
+                    "KADI v1.7. Monitor Kanban y KPIs en tiempo real para tu clínica veterinaria.",
+                    "Directorio unificado de pacientes y clientes con expediente único digital.",
+                    "Agenda médica inteligente para organizar tus consultas y cirugías.",
+                    "Control de stock, vademécum y alertas de caducidad automáticas.",
+                    "Finanzas auditadas con cortes de caja sin discrepancias.",
+                    "Hospitalización avanzada y monitoreo de pacientes en cuidados intensivos.",
+                    "Libreta de vacunación digital y seguimiento de refuerzos.",
+                    "Analítica empresarial y reportes de inteligencia de negocios."
+                ];
+                const utterance = new SpeechSynthesisUtterance(titles[index]);
+                utterance.lang = 'es-MX';
+                utterance.rate = 1.0;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+            resetProgress();
+        }
+
+        function resetProgress() {
+            progressBar.style.width = '0%';
+            startTime = Date.now();
+        }
+
+        function updateProgress() {
+            if (!isPlaying) return;
+            const elapsed = Date.now() - startTime;
+            const percentage = Math.min((elapsed / slideDuration) * 100, 100);
+            progressBar.style.width = `${percentage}%`;
+
+            if (elapsed >= slideDuration) {
+                nextSlide();
+            }
+        }
+
+        playBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                playBtn.innerHTML = '⏸ Pausar';
+                startTime = Date.now();
+                showSlide(currentSlide);
+                progressInterval = setInterval(updateProgress, 50);
+            } else {
+                playBtn.innerHTML = '▶ Reproducir Demo';
+                clearInterval(progressInterval);
+                if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+            }
+        });
+    </script>
+</body>
+</html>

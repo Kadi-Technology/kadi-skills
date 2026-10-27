@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0.0",
+  "policy": "KADI Public Claims Truth Matrix R1",
+  "sources": {
+    "core_repo": "core-repo-privado",
+    "web_repo": "web-repo",
+    "matrix": "docs/linkedin/PUBLIC-CLAIMS-TRUTH-MATRIX-R1.md"
+  },
+  "blocked_rules": [
+    {
+      "id": "LEGAL_FORMALIZED_COMPANY",
+      "pattern": "sociedad formalizada",
+      "flags": "giu",
+      "reason": "Estructura jurídica no certificada como claim público."
+    },
+    {
+      "id": "LEGAL_CONSTITUTED_COMPANY",
+      "pattern": "KADI\\s+es\\s+una\\s+empresa\\s+constituida",
+      "flags": "giu",
+      "reason": "Requiere evidencia jurídica vigente."
+    },
+    {
+      "id": "UNVERIFIED_MARKET_LEADER",
+      "pattern": "(?:el|la)\\s+mejor\\s+software\\s+veterinari[oa]",
+      "flags": "giu",
+      "reason": "Superlativo competitivo no demostrado."
+    },
+    {
+      "id": "UNVERIFIED_NUMBER_ONE",
+      "pattern": "(?:somos|KADI\\s+es)\\s+(?:el\\s+)?#?1\\b",
+      "flags": "giu",
+      "reason": "Ranking #1 no demostrado."
+    },
+    {
+      "id": "ABSOLUTE_SECURITY",
+      "pattern": "100\\s*%\\s+segur[oa]",
+      "flags": "giu",
+      "reason": "No usar absolutos de seguridad."
+    },
+    {
+      "id": "NO_VULNERABILITIES",
+      "pattern": "sin\\s+vulnerabilidades",
+      "flags": "giu",
+      "reason": "No usar absolutos de seguridad."
+    },
+    {
+      "id": "HIPAA_CLAIM",
+      "pattern": "HIPAA\\s+(?:compliant|certificad[oa]|cumplimiento)",
+      "flags": "giu",
+      "reason": "No existe certificación aplicable verificada."
+    },
+    {
+      "id": "AI_DIAGNOSIS",
+      "pattern": "IA\\s+que\\s+diagnostica",
+      "flags": "giu",
+      "reason": "Gladys no debe presentarse como diagnóstico autónomo."
+    },
+    {
+      "id": "MULTISITE_AVAILABLE",
+      "pattern": "multi[-\\s]?(?:sede|sucursal)\\s+(?:ya\\s+)?disponible",
+      "flags": "giu",
+      "reason": "Multi-sede unificada permanece fuera de disponibilidad pública verificada."
+    },
+    {
+      "id": "DISTRIBUTION_AVAILABLE",
+      "pattern": "programa\\s+de\\s+distribuci[oó]n\\s+(?:ya\\s+)?disponible",
+      "flags": "giu",
+      "reason": "No disponible como feature pública verificada."
+    },
+    {
+      "id": "UNVERIFIED_LOSS_CLAIM",
+      "pattern": "pierden\\s+miles\\s+de\\s+pesos\\s+al\\s+mes",
+      "flags": "giu",
+      "reason": "Pérdida económica no respaldada por estudio/evidencia canónica."
+    },
+    {
+      "id": "ABSOLUTE_CI",
+      "pattern": "100\\s*%[^\\n]{0,40}(?:CI|tests|pruebas)[^\\n]{0,20}(?:verde|green)",
+      "flags": "giu",
+      "reason": "Health debe llevar scope, SHA y fecha."
+    },
+    {
+      "id": "UNVERIFIED_PUBLIC_SITE_VERSION",
+      "pattern": "KADI\\s+Public\\s+Site\\s+V\\d+(?:\\.\\d+)*",
+      "flags": "giu",
+      "reason": "El sitio no tiene versión pública canónica certificada."
+    }
+  ],
+  "safe_claims": [
+    {
+      "id": "PRODUCT_CATEGORY",
+      "claim": "KADI es software para clínicas y hospitales veterinarios.",
+      "evidence": [
+        "src/index.html",
+        "src/clinicas.html"
+      ]
+    },
+    {
+      "id": "CONNECTED_OPERATION",
+      "claim": "KADI conecta recepción, consulta, hospitalización, caja e inventario alrededor del mismo expediente/contexto operativo.",
+      "evidence": [
+        "src/index.html",
+        "src/producto.html"
+      ]
+    },
+    {
+      "id": "GLADYS_GOVERNANCE",
+      "claim": "Gladys apoya la consulta; el criterio clínico y la decisión permanecen en el médico veterinario.",
+      "evidence": [
+        "src/producto.html"
+      ]
+    },
+    {
+      "id": "RESPONSIVE_PUBLIC_EVIDENCE",
+      "claim": "La galería pública muestra 38 vistas: 16 desktop, 11 tablet y 11 smartphone.",
+      "evidence": [
+        "src/producto.html"
+      ]
+    }
+  ],
+  "yellow_claims": [
+    {
+      "id": "CI_HEALTH",
+      "rule": "No publicar health absoluto. Citar HEAD/SHA, suite/scope, fecha y resultado."
+    },
+    {
+      "id": "PRODUCT_VERSION",
+      "rule": "No inferir versión desde rama, comentario, package metadata o documento histórico."
+    },
+    {
+      "id": "VALIDATION",
+      "rule": "Validación controlada no implica número de clientes, clínicas ni revenue."
+    }
+  ]
+}

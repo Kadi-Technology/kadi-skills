@@ -1,0 +1,25 @@
+{
+  "schema_version": "2.0.0",
+  "policy": "KADI Web Claims R2 — superlativos y promesas sin respaldo (Gate 0, 2026-10-04 + Auditoría 2026-10-21)",
+  "scope": "Texto público del sitio: .html, .njk, .md y .json (datos de Eleventy) dentro de src/ y portal/src/ (incluye front matter: title y description).",
+  "note": "Cada coincidencia legítima debe registrarse en scripts/claims/exceptions.json con justificación.",
+  "blocked_rules": [
+    { "id": "SUPERLATIVE_LEADER", "pattern": "(?<!\\p{L})l[ií]der(?:es)?(?!\\p{L})", "flags": "giu", "reason": "Liderazgo de mercado no demostrado." },
+    { "id": "SUPERLATIVE_BEST", "pattern": "(?<!\\p{L})(?:el|la|los|las|lo)\\s+mejor(?:es)?(?!\\p{L})", "flags": "giu", "reason": "Superlativo sin respaldo." },
+    { "id": "SUPERLATIVE_UNIQUE", "pattern": "(?<!\\p{L})[úu]nic[oa]s?(?!\\p{L})", "flags": "giu", "reason": "Exclusividad no demostrada." },
+    { "id": "SUPERLATIVE_NUMBER_ONE", "pattern": "(?:n[úu]mero\\s+uno|#\\s?1(?!\\d))", "flags": "giu", "reason": "Ranking no demostrado." },
+    { "id": "PROMISE_GUARANTEE", "pattern": "(?<!\\p{L})garantiz\\p{L}*", "flags": "giu", "reason": "Garantía no ofrecida formalmente." },
+    { "id": "PROMISE_ABSOLUTE_PERCENT", "pattern": "100\\s*%", "flags": "giu", "reason": "Absoluto sin evidencia." },
+    { "id": "SUPERLATIVE_REVOLUTION", "pattern": "(?<!\\p{L})revolucion\\p{L}*", "flags": "giu", "reason": "Superlativo de marketing." },
+    { "id": "CAPABILITY_REAL_TIME", "pattern": "tiempo\\s+real", "flags": "giu", "reason": "Capacidad no confirmada por el PO (decisión 2)." },
+    { "id": "CAPABILITY_AUTOMATIC", "pattern": "(?<!\\p{L})autom[áa]tic\\p{L}*", "flags": "giu", "reason": "Automatización no descrita en home ni /producto/." },
+    { "id": "CAPABILITY_CLOUD", "pattern": "(?<!\\p{L})(?:nube|cloud)(?!\\p{L})", "flags": "giu", "reason": "Modelo de despliegue pendiente del PO (decisión 2)." },
+    { "id": "CAPABILITY_SYNC", "pattern": "(?<!\\p{L})sincroniza\\p{L}*", "flags": "giu", "reason": "Sincronización no confirmada por el PO (decisión 2)." },
+    { "id": "SUPERLATIVE_RADICAL", "pattern": "(?<!\\p{L})radical(?:es|mente)?(?!\\p{L})", "flags": "giu", "reason": "Superlativo de marketing." },
+    { "id": "SUPERLATIVE_PERFECT", "pattern": "(?<!\\p{L})perfect\\p{L}*", "flags": "giu", "reason": "Absoluto sin respaldo." },
+    { "id": "SUPERLATIVE_TOTAL", "pattern": "(?<!\\p{L})(?:total|totalmente|absolut[oa]s?|absolutamente|completamente)(?!\\p{L})", "flags": "giu", "reason": "Absoluto sin respaldo." },
+    { "id": "PROMISE_ZERO", "pattern": "(?<!\\p{L})(?:cero\\s+\\p{L}+|sin\\s+errores|elimina\\p{L}*\\s+(?:las|los)\\s+(?:p[ée]rdidas|errores|mermas))", "flags": "giu", "reason": "Promesa absoluta de resultado." },
+    { "id": "UNVERIFIED_V17_PRODUCTION_STABLE", "pattern": "v1\\.7\\s+Production\\s+Stable", "flags": "giu", "reason": "Edición no verificada reemplazada por estado real v1.8.0-rc.3." },
+    { "id": "UNVERIFIED_VIP_FOUNDER_EDITION", "pattern": "VIP\\s+Founder\\s+Edition", "flags": "giu", "reason": "Nombre comercial sustituido por estado técnico real v1.8.0-rc.3." }
+  ]
+}

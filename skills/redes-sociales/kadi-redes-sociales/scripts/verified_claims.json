@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "Afirmaciones tecnicas que el Community Manager verifico personalmente en codigo fuente. El linter las usa como evidencia adicional a la del harvester (semantic_visual_index.json).",
+  "verified_on": "2026-10-21",
+  "verified_by": "Community Manager Autonomo (lectura local de solo lectura, sin conexion a produccion)",
+  "source_checkout": "<RUTA_CHECKOUT_LOCAL_DEL_PORTAL>",
+  "note": "El checkout local es la copia de la web publica de la clinica (portal portal-cliente.kadi.technology). El harvester confirmo en vivo el mismo comportamiento (indice semantico, verified_claim).",
+  "claims": [
+    {
+      "id": "VISOR3D_WEBGL_SIN_THREEJS",
+      "claim": "El visor 3D esta escrito en WebGL puro, sin Three.js ni otras librerias; el atlas anatomico es procedural y no tiene dependencias.",
+      "evidence_tokens": [
+        "three.js",
+        "webgl puro"
+      ],
+      "evidence": [
+        {
+          "file": "assets/visor3d.js",
+          "sha256": "252b110f6dab496c669d77479bd01196ff1dc545916edfcfbb67827e32efff0a",
+          "line": 2,
+          "text": "KADI SCV · Visor de Anatomía 3D v2 (WebGL puro, sin librerías)"
+        },
+        {
+          "file": "assets/visor3d.js",
+          "line": 232,
+          "text": "const gl = cv.getContext('webgl', { antialias: false, alpha: true, premultipliedAlpha: true, preserveDrawingBuffer: true });"
+        },
+        {
+          "file": "assets/anatomia3d.js",
+          "sha256": "26525618a245f46662e189c9a24a87710a3f3a3eb53820bfec2b14989f03c126",
+          "line": 8,
+          "text": "Sin dependencias. Expone window.KADI_ANAT"
+        },
+        {
+          "file": "index.html, assets/visor3d.js, assets/anatomia3d.js",
+          "check": "grep -c -i \"three\" devuelve 0 en los tres archivos"
+        }
+      ]
+    },
+    {
+      "id": "AES_GCM_DEMO_NAVEGADOR",
+      "claim": "La demo de cifrado del portal usa WebCrypto AES-GCM con llave de 256 bits generada al momento e IV aleatorio de 12 bytes (96 bits), en el navegador.",
+      "evidence_tokens": [
+        "webcrypto",
+        "aes-256-gcm",
+        "96 bits"
+      ],
+      "evidence": [
+        {
+          "file": "index.html",
+          "sha256": "fbb2ade4e0d5fc7b46f4992d594d6a0e5f9b7176b52ab0574cc282cb2432a730",
+          "line": 1135,
+          "text": "aesKey = await crypto.subtle.generateKey({ name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);"
+        },
+        {
+          "file": "index.html",
+          "line": 1136,
+          "text": "lastIv = crypto.getRandomValues(new Uint8Array(12));"
+        }
+      ]
+    },
+    {
+      "id": "VISOR3D_PUNTERO_LASER",
+      "claim": "El visor 3D incluye herramienta de puntero laser (tecla P) y tinta de anotacion sobre un lienzo 2D superpuesto.",
+      "evidence_tokens": [
+        "puntero laser"
+      ],
+      "evidence": [
+        {
+          "file": "assets/visor3d.js",
+          "line": 1024,
+          "text": "else if (k === 'p' || k === 'P') setTool(st.tool === 'laser' ? 'none' : 'laser');"
+        }
+      ]
+    },
+    {
+      "id": "CLINICA_81_ANOS_1945_SOCIO_001",
+      "claim": "El portal de la clinica declara 81 anos de trayectoria, fundacion en 1945 y la insignia Socio Fundador #001.",
+      "evidence_tokens": [
+        "81 anos",
+        "1945",
+        "socio fundador #001"
+      ],
+      "evidence": [
+        {
+          "file": "index.html",
+          "line": 33,
+          "text": "\"foundingDate\": \"1945\""
+        },
+        {
+          "file": "index.html",
+          "line": 147,
+          "text": "Socio Fundador #001 · Powered by KADI SCV v1.8"
+        },
+        {
+          "file": "index.html",
+          "line": 204,
+          "text": "81 Años de Excelencia Veterinaria y Guardia Nocturna Real 24/7 en Prado Norte."
+        }
+      ]
+    },
+    {
+      "id": "CONTRACT_ERP_SIN_INTERNET",
+      "claim": "Contract ERP es una aplicacion de escritorio offline-first con SQLite local; el backend no hace llamadas de red. Etapa: desarrollo.",
+      "evidence_tokens": [],
+      "evidence": [
+        {
+          "file": "contract-erp/README.md",
+          "line": 3,
+          "text": "Aplicación de escritorio offline-first para contratistas y despachos de construcción en México."
+        },
+        {
+          "file": "contract-erp/README.md",
+          "line": 242,
+          "text": "Red. El backend no hace llamadas de red."
+        },
+        {
+          "file": "KadiWebPage/portal/src/_data/projects.json",
+          "slug": "contract-erp",
+          "text": "tagline: ERP de escritorio para contratistas y despachos de arquitectura, que funciona sin internet."
+        }
+      ]
+    },
+    {
+      "id": "VISOR3D_CUATRO_ESPECIES_14_SISTEMAS",
+      "claim": "El visor/atlas 3D del portal publico de la Clinica Clínica Fundadora ofrece cuatro especies (canino, felino, conejo y ave) y 14 sistemas anatomicos. Matiz: dentro de KADI SCV (rc.4) la vinculacion clinica del atlas con el expediente (sugerencia de lesiones) cubre perro y gato. Los 14 sistemas anatomicos no tienen relacion con el canon del portafolio (10 sistemas principales + 2 modulos clinicos).",
+      "verified_on": "2026-10-21",
+      "evidence_tokens": [
+        "cuatro especies",
+        "14 sistemas anatomicos"
+      ],
+      "evidence": [
+        {
+          "source": "https://portal-cliente.kadi.technology/assets/anatomia3d.js",
+          "kind": "js publico del portal",
+          "verified_on": "2026-10-21",
+          "verified_by": "Community Manager y agente de evidencia independiente",
+          "text": "Especies: canino, felino, conejo y ave; 14 sistemas anatomicos."
+        }
+      ]
+    },
+    {
+      "id": "KADI_ANATOMY_3D_DEMO_BASICA_VS_SUITE_PRO",
+      "claim": "KADI Anatomy 3D distingue la Demo Publica Basica (disponible en web portal-cliente.kadi.technology y kadi.technology para apoyo visual al tutor con 4 especies y 14 sistemas) de la Suite Clinica Pro integrada en KADI SCV (v1.8.0-rc.4, en validacion para despliegue; marcadores SOAP y exportacion FHIR R5).",
+      "verified_on": "2026-10-22",
+      "evidence_tokens": [
+        "kadi anatomy 3d",
+        "demo publica basica",
+        "suite clinica pro"
+      ],
+      "evidence": [
+        {
+          "file": "portal/src/_data/projects.json",
+          "slug": "anatomia-3d",
+          "text": "KADI Anatomy 3D · Demo Pública Básica en web; suite clínica completa integrada en KADI SCV v1.8.0-rc.4 (en validación para despliegue)."
+        }
+      ]
+    }
+  ]
+}

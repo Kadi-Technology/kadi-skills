@@ -1,0 +1,99 @@
+{
+  "title": "KADI — Del expediente al cobro",
+  "voice": "Narrador (grabación importada)",
+  "audioSource": "external_recording_required",
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "scenes": [
+    {
+      "id": "01",
+      "eyebrow": "PARA QUIEN DIRIGE LA CLÍNICA",
+      "headline": [
+        "¿La cuenta refleja",
+        "toda la atención?"
+      ],
+      "support": "Tratamientos · Medicamentos · Hospitalización",
+      "voice": "¿Cuántos medicamentos, tratamientos y horas de hospitalización se quedan fuera de la cuenta? El desorden administrativo también tiene un costo.",
+      "screens": [
+        "07_login_clinica_ejemplo.png",
+        "08_dashboard_ejemplo.png"
+      ],
+      "layout": "hook"
+    },
+    {
+      "id": "02",
+      "eyebrow": "UN EQUIPO. EL MISMO CONTEXTO.",
+      "headline": [
+        "Del ingreso",
+        "al expediente."
+      ],
+      "support": "Admisión e historial conectados",
+      "voice": "Conoce KADI: software veterinario que conecta a tu equipo con la misma información del paciente. Desde la admisión, consulta su historial y documenta la atención.",
+      "screens": [
+        "11_ficha_paciente_ejemplo.png",
+        "12_modal_admision_clinica.png",
+        "13_soap_expediente_clinico.png"
+      ],
+      "layout": "split"
+    },
+    {
+      "id": "03",
+      "eyebrow": "CONTINUIDAD ENTRE TURNOS",
+      "headline": [
+        "El siguiente turno,",
+        "con contexto."
+      ],
+      "support": "Hospitalización y seguimiento",
+      "voice": "En hospitalización, reúne indicaciones y evolución para dar continuidad entre turnos. La medicina preventiva mantiene el seguimiento del paciente en el mismo sistema.",
+      "screens": [
+        "15_hospitalizacion_uci.png",
+        "14_medicina_preventiva_ejemplo.png"
+      ],
+      "layout": "showcase"
+    },
+    {
+      "id": "04",
+      "eyebrow": "ATENCIÓN Y ADMINISTRACIÓN",
+      "headline": [
+        "Atención y cobro,",
+        "conectados."
+      ],
+      "support": "Mostrador · Cargos · Pagos · Saldos",
+      "voice": "Conecta los consumos registrados con la cuenta del paciente. Consulta cargos, pagos y saldos, y atiende las ventas de mostrador desde un solo entorno.",
+      "screens": [
+        "16_pos_punto_de_venta.png",
+        "17_caja_finanzas.png"
+      ],
+      "layout": "split"
+    },
+    {
+      "id": "05",
+      "eyebrow": "CONFIGURA TU OPERACIÓN",
+      "headline": [
+        "Selecciona tu",
+        "mejor opción."
+      ],
+      "support": "Hospital · Clínica · Grooming",
+      "voice": "Selecciona la mejor opción para tu operación: hospital, clínica o grooming. Elige tu modelo base y activa los módulos que necesitas. Podrás ajustarlos después.",
+      "screens": [
+        "01_onboarding_paso0_modelo.png"
+      ],
+      "layout": "split"
+    },
+    {
+      "id": "06",
+      "eyebrow": "CONOCE KADI EN UNA DEMO",
+      "headline": [
+        "Tu clínica en orden.",
+        "Del expediente al cobro."
+      ],
+      "support": "kadi.technology",
+      "voice": "Da el siguiente paso. Entra a kadi punto technology y agenda una demostración con tu clínica en mente. Conoce el producto, resuelve tus dudas y decide con información.",
+      "screens": [
+        "08_dashboard_ejemplo.png"
+      ],
+      "layout": "outro"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0.0",
+  "brand": {
+    "colors": {
+      "navy": "#0e1a2e",
+      "gold": "#c9a227",
+      "paper": "#f6f7fa",
+      "white": "#ffffff",
+      "ink": "#10161f"
+    },
+    "fonts": {
+      "display": "Outfit",
+      "body": "Public Sans"
+    },
+    "logo_asset_id": "MAHVzdPOYbI"
+  },
+  "canva_folders": {
+    "templates": "FAHVzRxkeCM",
+    "queue": "FAHVzS5cx8U",
+    "published": "FAHVzelg0wk",
+    "product_proof": "FAHVzYc-9lo",
+    "founder": "FAHVzfenjkY",
+    "clinics": "FAHVzeBVTcc",
+    "investors": "FAHVzT2miMk"
+  },
+  "assets": {
+    "dashboard": "MAHVzREQOsE",
+    "record": "MAHVzX_p6AE",
+    "cash": "MAHVzehvzcU",
+    "hospitalization": "MAHVzd8lB-4",
+    "inventory": "MAHVzcWsqsY",
+    "rbac": "MAHVzY4rdus",
+    "gladys": "MAHVzbffdHM",
+    "agenda": "MAHVzZeVm64",
+    "pos": "MAHVzYkFNas",
+    "preventive": "MAHVzSdS4XA",
+    "receivables": "MAHVzdFOVjI",
+    "reports": "MAHVzd6oA4Y",
+    "branding": "MAHVzf8zNMQ"
+  },
+  "templates": [
+    {
+      "id": "T01",
+      "name": "Product Proof",
+      "size": "1200x1200",
+      "purpose": "Mostrar una función real y su consecuencia operativa.",
+      "required": [
+        "logo",
+        "one_product_screenshot"
+      ],
+      "rules": [
+        "screenshot 55-70%",
+        "gold accent only",
+        "short caption",
+        "no invented UI"
+      ]
+    },
+    {
+      "id": "T02",
+      "name": "Operational Insight",
+      "size": "1200x1200",
+      "purpose": "Explicar un problema operativo concreto.",
+      "required": [
+        "logo"
+      ],
+      "rules": [
+        "navy/paper base",
+        "max 30 visual words",
+        "one idea"
+      ]
+    },
+    {
+      "id": "T03",
+      "name": "Founder Lesson",
+      "size": "1200x1200",
+      "purpose": "Build-in-public y aprendizaje.",
+      "required": [
+        "logo"
+      ],
+      "rules": [
+        "no motivational quote aesthetic",
+        "photo only if approved",
+        "attribute Founder"
+      ]
+    },
+    {
+      "id": "T04",
+      "name": "Educational Carousel",
+      "size": "1080x1350",
+      "purpose": "Checklist/problema educativo.",
+      "required": [
+        "logo"
+      ],
+      "rules": [
+        "5-8 pages",
+        "one point/page",
+        "35-45 words max/page",
+        "last page CTA"
+      ]
+    },
+    {
+      "id": "T05",
+      "name": "Video Cover",
+      "size": "1080x1350",
+      "purpose": "Portada para walkthrough corto.",
+      "required": [
+        "logo",
+        "product_screenshot"
+      ],
+      "rules": [
+        "5-8 word headline",
+        "module label",
+        "minimal elements"
+      ]
+    },
+    {
+      "id": "T06",
+      "name": "Company Banner",
+      "size": "linkedin_company_banner",
+      "purpose": "Explicar KADI en 3 segundos.",
+      "required": [
+        "logo"
+      ],
+      "copy": [
+        "Toda tu clínica veterinaria, conectada al mismo expediente.",
+        "Recepción · Consulta · Hospitalización · Caja · Inventario"
+      ]
+    },
+    {
+      "id": "T07",
+      "name": "Founder Banner",
+      "size": "linkedin_profile_banner",
+      "purpose": "Posicionar al Founder como constructor de KADI.",
+      "required": [
+        "logo"
+      ],
+      "copy": [
+        "Construyendo KADI",
+        "Software veterinario conectado · Producto real · Validación controlada"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "kadi-redes-sociales",
+  "version": "1.0.0",
+  "description": "Portafolio y campañas de redes sociales de KADI Technology",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint:claims": "node scripts/check_social_copy.mjs Campanas _PAUSADOS_REVISION_VERACIDAD",
+    "test": "node --test scripts/check_social_copy.test.mjs"
+  }
+}

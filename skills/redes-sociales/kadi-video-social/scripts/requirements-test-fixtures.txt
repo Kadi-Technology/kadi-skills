@@ -1,0 +1,2 @@
+# Optional: only required to synthesize a clearly marked Salome fixture for QA.
+edge-tts==7.2.8

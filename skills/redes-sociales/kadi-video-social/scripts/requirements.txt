@@ -1,0 +1,5 @@
+# Python dependencies for the video renderer and local voice-import pipeline.
+faster-whisper==1.2.1
+moviepy==1.0.3
+numpy==2.5.1
+Pillow==13.0.0
